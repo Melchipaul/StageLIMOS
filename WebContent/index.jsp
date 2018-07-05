@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" href="css/styles.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<<script src="../node_modules/livy-client/main.js"></script>
 <link rel="stylesheet" href="javascript/librairies/treant-js/Treant.css"
 	type="text/css">
 <!--<script src="javascript/librairies/ckeditor/ckeditor.js"></script>-->

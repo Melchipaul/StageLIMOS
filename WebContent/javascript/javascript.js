@@ -286,21 +286,64 @@ function appendDiv(identifiant, response) {
     if (editor !== undefined) {
 
         var CodeMirrorString = editor.getValue();
-        $.ajax({
-            type: 'POST',
-            dataType:'json',
-            url: 'http://localhost:8998/',
-            data: {kind: 'spark',
-                   code: CodeMirrorString},
-            success: function (resultat) {
+        const LivyClient = require('livy-client')
 
+        const start = async () => {
 
-                document.getElementById(response).innerHTML = resultat;
+            // Create client
+            const livy = new LivyClient({
+                host: 'localhost',
+                port: '8998'
+            })
 
-
+            // Get sessions
+            const sessions = await livy.sessions()
+            for (session of sessions) {
+                const status = await session.status()
+                console.log(`Session id: ${status.id}, state: ${status.state}`)
             }
 
-        });
+            // Create session
+            const newSession = await livy.createSession({
+                kind: 'pyspark3',
+                numExecutors: 4
+            })
+
+            // Listen event of a session
+            newSession
+                    .on('starting', status => {
+                        console.log('Session starting... ' + status.log.slice(0, -1).slice(-1)[0].replace(/\n/g, ' '))
+                    })
+                    // Once ready, execute a code and kill the session
+                    .once('idle', async status => {
+                        const statement = await newSession.run('from time import sleep; sleep(5); print(spark)')
+                        statement
+                                .on('running', status => {
+                                    console.log(`Statement running... ${Math.round(status.progress * 100)}/100%`)
+                                }).once('available', response => {
+                            console.log(`Statement completed. Result: `)
+                            console.log(response.output)
+                            newSession.kill()
+                        })
+                    })
+
+        }
+
+        start()
+
+//        $.ajax({
+//            type: 'POST',
+//            dataType: 'json',
+//            url: 'http://localhost:8998/',
+//            data: {kind: 'spark',
+//                code: CodeMirrorString},
+//            success: function (resultat) {
+//
+//
+//                document.getElementById(response).innerHTML = resultat;
+//            }
+//
+//        });
     }
     divNumber++;
 
