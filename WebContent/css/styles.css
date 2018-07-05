@@ -1,0 +1,262 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 avr. 2018, 18:30:01
+    Author     : nduwayo
+*/
+
+body
+{
+    text-align: center; 
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+    margin: auto;
+}
+.container
+{
+    width: 80%; 
+   margin: 0 auto;
+   
+}
+
+.header
+{
+    background-color: #03587C;
+    width: 100%;
+    top:0;
+   position: fixed;
+   opacity: 1.0 !important;
+   height: 20%;
+    
+}
+
+
+
+
+section
+{
+    background-color: #F9F9EE;
+    margin-bottom: 2px;
+}
+
+footer
+{
+    background-color: #03587C;
+    font-size: 20px !important;
+    margin-top: 5px;
+    width: 100%;
+    bottom: 0;
+    
+}
+
+#myDrag
+{
+    width: 90%;
+    height: auto;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+}
+
+#drag
+{
+    display: none;
+}
+
+#treenoptimizer
+{
+    
+    margin-bottom: 10%;
+    margin-left: 2px;
+    float: left;
+    width: 49%;
+    height: auto;
+    overflow: auto;
+    border: 3px solid #DDD; 
+    border-radius: 3px;
+}
+
+#treeoptimizer
+{
+    
+    margin-bottom: 10%;
+    margin-right: 2px;
+    width: 49%;
+    height: auto;
+    overflow: auto;
+    border: 3px solid #DDD; 
+    border-radius: 3px;
+}
+
+#optimizer
+{
+    margin-bottom: 10%;
+    margin-top: 10%;
+    width: 99%;
+    height: auto;
+}
+
+#modal-content
+{
+    display: none;
+    width: 49%;
+    height: auto;
+    position: absolute;
+    padding: 8px;
+    border: 2px solid;
+    padding-top: 30px;
+    z-index: 3;
+    border-radius: 5px;
+    left:50%;
+    top: 50%;
+    margin-left: -20%;
+    margin-top: -20%;
+
+
+}
+
+#modal-bg
+{
+    display: none;
+    background-color: #F8FCE3;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 2;
+    opacity: 0.9;
+
+
+
+}
+
+.modal-close
+{
+    color: red;
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    cursor: pointer;
+}
+
+a
+{
+    text-decoration: none !important;
+    color: white !important;
+}
+
+#formulaContent
+{
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#popWrite
+{
+    display: none;
+    position: absolute;
+    left:50%;
+    top: 50%;
+    width: 10%;
+    height: 10%;
+    margin-left: -5%;
+    margin-top: -5%;
+    z-index: 4;
+}
+
+iframe
+{
+    background-color: white;
+}
+
+#error
+{
+    display: none;
+    color:red;
+    font-weight: bold;
+    
+}
+#trees::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.node { color: #9CB5ED; border: 2px solid #C8C8C8; border-radius: 3px; text-align: center; }
+.node p { font-size: 20px; line-height: 20px; height: 20px; font-weight: bold; padding: 3px; margin: 0;
+}
+
+.logo
+{
+   float: left; 
+}
+
+li
+{
+    list-style: none;
+    float: left;
+    margin: 15px;
+    padding-top: 20%;
+}
+.nav
+{
+  float: right;  
+}
+.content
+{
+    margin: 0 auto;
+    padding-top: 20%;
+}
+
+#interactiveProgramm
+{
+    margin-bottom: 10%;
+    margin-top: 10%;
+    height: 40%;
+}
+
+#contact
+{
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+#help
+{
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+
+#interactivForm
+{
+    min-height: 500px;
+    height: auto;
+}
+
+#MyInterpreter
+{
+    display: block;
+    width: 100%;
+    min-height: 500px;
+    height: auto;
+}
+.execute
+{
+ display: block;
+ float: right;
+}
+.interactive
+{
+ display: inline;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.CodeMirror { text-align: left!important; }
+
+
+
+
