@@ -257,6 +257,10 @@ li
 }
 .CodeMirror { text-align: left!important; }
 
+p[id^=MyInterpreterResponse]{
+    color: green;
+}
+
 
 
 
