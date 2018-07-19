@@ -2,8 +2,8 @@ var divNumber = 0;
 var session_id = -1;
 var state1 = "starting";
 var state2 = "";
-var state_result="";
-var state_result1="";
+var state_result = "";
+var state_result1 = "";
 var statement_id = -1;
 var statement_id1 = -1;
 var resultat;
@@ -277,7 +277,7 @@ $(document).ready(function () {
         }
     });
 });
-function submit_code(session_id,code) {
+function submit_code(session_id, code) {
     var settings = {
         "async": false,
         "crossDomain": true,
@@ -289,7 +289,7 @@ function submit_code(session_id,code) {
             "Cache-Control": "no-cache"
         },
         "processData": false,
-        "data": "{\"code\": \""+code+"\"}"
+        "data": "{\"code\": \"" + code + "\"}"
     };
 
     $.ajax(settings).done(function (response2) {
@@ -372,8 +372,8 @@ function appendDiv(identifiant, reponse) {
     var editor = codeMirrorInstances[identifiant];
     if (editor !== undefined) {
 
-var CodeMirrorString = editor.getValue();
-console.log(CodeMirrorString);
+        var CodeMirrorString = editor.getValue();
+        console.log(CodeMirrorString);
 //         
 //       var  host = 'http://localhost:8998';
 //      var data = {'kind': 'spark'};
@@ -417,7 +417,7 @@ console.log(CodeMirrorString);
                 console.log("Je suis dans le done de main");
                 var my_json_response = eval('(' + JSON.stringify(response) + ')');
                 session_id = my_json_response['id'];
-                
+
 
             });
             console.log("Voyons cette session ici!");
@@ -425,21 +425,21 @@ console.log(CodeMirrorString);
             const state = setInterval(function () {
                 state1 = get_idle(session_id);
                 if (state1 === "idle") {
-                    statement_id = submit_code(session_id,CodeMirrorString);
+                    statement_id = submit_code(session_id, CodeMirrorString);
                     clearInterval(state);
                     if (state1 === "idle" && session_id !== -1 && statement_id !== -1) {
                         console.log("J'entre ici???");
-                        const state_result_waite = setInterval(function(){
-                           state_result1= get_result(session_id, statement_id);
-                           if(state_result1==="available"){
-                               console.log("Je suis entré ici aussi");
-                               console.log(state_result1);
-                               console.log(resultat['output']);
-                               document.getElementById(reponse).innerHTML = JSON.stringify(resultat['output']);
+                        const state_result_waite = setInterval(function () {
+                            state_result1 = get_result(session_id, statement_id);
+                            if (state_result1 === "available") {
+                                console.log("Je suis entré ici aussi");
+                                console.log(state_result1);
+                                console.log(resultat['output']);
+                                document.getElementById(reponse).innerHTML = JSON.stringify(resultat['output']);
                                 clearInterval(state_result_waite);
-                           }
-                        },1000);
-                        
+                            }
+                        }, 1000);
+
                     }
 
                 }
@@ -447,28 +447,28 @@ console.log(CodeMirrorString);
 
             },
                     1000);
-         
+
         } else {
             console.log("Voyons cette session ici!");
             console.log(session_id);
             const state = setInterval(function () {
                 state1 = get_idle(session_id);
                 if (state1 === "idle") {
-                    statement_id = submit_code(session_id,escape(CodeMirrorString));
+                    statement_id = submit_code(session_id, CodeMirrorString);
                     clearInterval(state);
                     if (state1 === "idle" && session_id !== -1 && statement_id !== -1) {
                         console.log("J'entre ici???");
-                        const state_result_waite = setInterval(function(){
-                           state_result1= get_result(session_id, statement_id);
-                           if(state_result1==="available"){
-                               console.log("Je suis entré ici aussi");
-                               console.log(state_result1);
-                               console.log(resultat['output']);
-                               document.getElementById(reponse).innerHTML = JSON.stringify(resultat['output']);
+                        const state_result_waite = setInterval(function () {
+                            state_result1 = get_result(session_id, statement_id);
+                            if (state_result1 === "available") {
+                                console.log("Je suis entré ici aussi");
+                                console.log(state_result1);
+                                console.log(resultat['output']);
+                                document.getElementById(reponse).innerHTML = JSON.stringify(resultat['output']);
                                 clearInterval(state_result_waite);
-                           }
-                        },1000);
-                        
+                            }
+                        }, 1000);
+
                     }
 
                 }
