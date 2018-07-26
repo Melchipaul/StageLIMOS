@@ -277,6 +277,24 @@ $(document).ready(function () {
         }
     });
 });
+
+//function dedent(text) {
+//    var re_whitespace = /^([ \t]*)(.*)\n/gm;
+//    var l, m, i;
+//
+//    while ((m = re_whitespace.exec(text)) !== null) {
+//        if (!m[2]) continue;
+//
+//        if (l === m[1].length) {
+//            i = (i !== undefined) ? Math.min(i, l) : l;
+//        } else break;
+//    }
+//
+//    if (i)
+//        text = text.replace(new RegExp('^[ \t]{' + i + '}(.*\n)', 'gm'), '$1');
+//
+//    return text;
+//}
 function submit_code(session_id, code) {
     var settings = {
         "async": false,
@@ -355,6 +373,7 @@ function get_idle(session_id) {
     });
     return state2;
 }
+
 
 function appendDiv(identifiant, reponse) {
     $("#interactiveProgramm").append('<div id=interactivForm class=interactive><input type=image src=images/execute.png class=execute onclick=appendDiv("MyInterpreter' + divNumber + '","MyInterpreterResponse' + divNumber + '"); ><textarea  id="MyInterpreter' + divNumber + '" class="MyInterpreter form-control"></textarea><p id="MyInterpreterResponse' + divNumber + '"></p></div>');
