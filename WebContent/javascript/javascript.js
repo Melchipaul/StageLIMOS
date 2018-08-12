@@ -295,88 +295,88 @@ $(document).ready(function () {
 //
 //    return text;
 //}
-function submit_code(session_id, code) {
-    var settings = {
-        "async": false,
-        "crossDomain": true,
-        "url": "http://Livy.net/sessions/" + session_id + "/statements",
-        "method": "POST",
-        "headers": {
-            "Content-Type": "application/json",
-            "X-Requested-By": "user",
-            "Cache-Control": "no-cache"
-        },
-        "processData": false,
-        "data": "{\"code\": \"" + code + "\"}"
-    };
+//function submit_code(session_id, code) {
+//    var settings = {
+//        "async": false,
+//        "crossDomain": true,
+//        "url": "http://Livy.net/sessions/" + session_id + "/statements",
+//        "method": "POST",
+//        "headers": {
+//            "Content-Type": "application/json",
+//            "X-Requested-By": "user",
+//            "Cache-Control": "no-cache"
+//        },
+//        "processData": false,
+//        "data": "{\"code\": \"" + code + "\"}"
+//    };
 
-    $.ajax(settings).done(function (response2) {
-        console.log("Je suis dans le done de submit");
-        console.log(response2);
-        var my_json_response2 = eval('(' + JSON.stringify(response2) + ')');
-        statement_id1 = my_json_response2['id'];
-        console.log(my_json_response2);
-        console.log(statement_id1);
-        console.log(state1);
-        console.log(session_id);
+//    $.ajax(settings).done(function (response2) {
+//        console.log("Je suis dans le done de submit");
+//        console.log(response2);
+//        var my_json_response2 = eval('(' + JSON.stringify(response2) + ')');
+//        statement_id1 = my_json_response2['id'];
+//        console.log(my_json_response2);
+//        console.log(statement_id1);
+//        console.log(state1);
+//        console.log(session_id);
+//
+//    });
+//    console.log(statement_id1);
+//    return statement_id1;
+//}
+//function get_result(session_id, statement_id) {
+//    console.log(session_id);
+//    console.log(statement_id);
+//    var settings = {
+//        "async": false,
+//        "crossDomain": true,
+//        "url": "http://Livy.net/sessions/" + session_id + "/statements/" + statement_id + "",
+//        "method": "GET",
+//        "headers": {
+//            "Content-Type": "application/json",
+//            "X-Requested-By": "user",
+//            "Cache-Control": "no-cache"
+//        }
+//    };
+//
+//    $.ajax(settings).done(function (response3) {
+//        console.log("Je suis dans le done de get_result");
+//        console.log(response3['state']);
+//        state_result = response3['state'];
+//        resultat = eval('(' + JSON.stringify(response3) + ')');
+//        console.log("Je quitte le done de get_result");
+//    });
+//    console.log(state_result);
+//    return state_result;
+//}
+//function get_idle(session_id) {
+//
+//    var settings = {
+//        "async": false,
+//        "crossDomain": true,
+//        "url": "http://Livy.net/sessions/" + session_id + "",
+//        "method": "GET",
+//        "headers": {
+//            "Content-Type": "application/json",
+//            "X-Requested-By": "user",
+//            "Cache-Control": "no-cache"
+//        }
+//    };
+//
+//    $.ajax(settings).done(function (response1) {
+//        console.log("Je suis dans le done de get_idle");
+//        console.log(response1);
+//        var my_json_response1 = eval('(' + JSON.stringify(response1) + ')');
+//        state2 = my_json_response1['state'];
+//        console.log("Je suis dans la fonction " + state2);
+//
+//    });
+//    return state2;
+//}
 
-    });
-    console.log(statement_id1);
-    return statement_id1;
-}
-function get_result(session_id, statement_id) {
-    console.log(session_id);
-    console.log(statement_id);
-    var settings = {
-        "async": false,
-        "crossDomain": true,
-        "url": "http://Livy.net/sessions/" + session_id + "/statements/" + statement_id + "",
-        "method": "GET",
-        "headers": {
-            "Content-Type": "application/json",
-            "X-Requested-By": "user",
-            "Cache-Control": "no-cache"
-        }
-    };
 
-    $.ajax(settings).done(function (response3) {
-        console.log("Je suis dans le done de get_result");
-        console.log(response3['state']);
-        state_result = response3['state'];
-        resultat = eval('(' + JSON.stringify(response3) + ')');
-        console.log("Je quitte le done de get_result");
-    });
-    console.log(state_result);
-    return state_result;
-}
-function get_idle(session_id) {
-
-    var settings = {
-        "async": false,
-        "crossDomain": true,
-        "url": "http://Livy.net/sessions/" + session_id + "",
-        "method": "GET",
-        "headers": {
-            "Content-Type": "application/json",
-            "X-Requested-By": "user",
-            "Cache-Control": "no-cache"
-        }
-    };
-
-    $.ajax(settings).done(function (response1) {
-        console.log("Je suis dans le done de get_idle");
-        console.log(response1);
-        var my_json_response1 = eval('(' + JSON.stringify(response1) + ')');
-        state2 = my_json_response1['state'];
-        console.log("Je suis dans la fonction " + state2);
-
-    });
-    return state2;
-}
-
-
-function appendDiv(identifiant, reponse) {
-    $("#interactiveProgramm").append('<div id=interactivForm class=interactive><input type=image src=images/execute.png class=execute onclick=appendDiv("MyInterpreter' + divNumber + '","MyInterpreterResponse' + divNumber + '"); ><textarea  id="MyInterpreter' + divNumber + '" class="MyInterpreter form-control"></textarea><p id="MyInterpreterResponse' + divNumber + '"></p></div>');
+function appendDiv(identifiant, reponse, errorCode) {
+    $("#interactiveProgramm").append('<div id=interactivForm class=interactive><input type=image src=images/execute.png class=execute onclick=appendDiv("MyInterpreter' + divNumber + '","MyInterpreterResponse' + divNumber + '","errorCode' + divNumber + '"); ><textarea  id="MyInterpreter' + divNumber + '" class="MyInterpreter form-control"></textarea><span id="errorCode' + divNumber + '"> </span><p id="MyInterpreterResponse' + divNumber + '"></p></div>');
     var javaEditor = CodeMirror.fromTextArea(document.getElementsByClassName("MyInterpreter")[divNumber], {
         lineNumbers: true,
         matchBrackets: true,
@@ -389,10 +389,33 @@ function appendDiv(identifiant, reponse) {
     });
     codeMirrorInstances["MyInterpreter" + divNumber] = javaEditor;
     var editor = codeMirrorInstances[identifiant];
+    function isEmpty(myString) {
+            return (myString.length === 0 || !myString.trim());
+        }
     if (editor !== undefined) {
 
         var CodeMirrorString = editor.getValue();
         console.log(CodeMirrorString);
+        if (isEmpty(CodeMirrorString)) {
+            var error = "Error : Your code expression is empty !";
+            $('#'+errorCode).html(error);
+            $('#'+errorCode).css("display", "inline-block");
+        } else {
+            $('#'+errorCode).html("");
+            $('#'+errorCode).css("display", "none");
+            error = "";
+            $.ajax({
+                type: 'POST',
+                url: 'ApacheLivyInteractiveApi',
+                data: {myCode: CodeMirrorString},
+                success: function (resultat) {
+                    
+                 document.getElementById(reponse).innerHTML=  resultat;
+
+                }
+
+            });
+        }
 //         
 //       var  host = 'http://localhost:8998';
 //      var data = {'kind': 'spark'};
@@ -417,87 +440,126 @@ function appendDiv(identifiant, reponse) {
 
 
 
-        if (session_id === -1) {
+//        if (session_id === -1) {
 
-            var settings = {
-                "async": false,
-                "crossDomain": true,
-                "url": "http://Livy.net/sessions",
-                "method": "POST",
-                "headers": {
-                    "Content-Type": "application/json",
-                    "X-Requested-By": "user",
-                    "Cache-Control": "no-cache"
-                },
-                "processData": false,
-                "data": "{\"kind\": \"spark\"}"
-            };
-            $.ajax(settings).done(function (response) {
-                console.log("Je suis dans le done de main");
-                var my_json_response = eval('(' + JSON.stringify(response) + ')');
-                session_id = my_json_response['id'];
+//            var settings = {
+//                "async": false,
+//                "crossDomain": true,
+//                "url": "http://Livy.net/sessions",
+//                "method": "POST",
+//                "headers": {
+//                    "Content-Type": "application/json",
+//                    "X-Requested-By": "user",
+//                    "Cache-Control": "no-cache"
+//                },
+//                "processData": false,
+//                "data": "{\"kind\": \"spark\"}"
+//            };
+//            $.ajax(settings).done(function (response) {
+//                console.log("Je suis dans le done de main");
+//                var my_json_response = eval('(' + JSON.stringify(response) + ')');
+//                session_id = my_json_response['id'];
+//
+//
+//            });
+//            console.log("Voyons cette session ici!");
+//            console.log(session_id);
+//            const state = setInterval(function () {
+//                state1 = get_idle(session_id);
+//                if (state1 === "idle") {
+//                    statement_id = submit_code(session_id, CodeMirrorString);
+//                    clearInterval(state);
+//                    if (state1 === "idle" && session_id !== -1 && statement_id !== -1) {
+//                        console.log("J'entre ici???");
+//                        const state_result_waite = setInterval(function () {
+//                            state_result1 = get_result(session_id, statement_id);
+//                            if (state_result1 === "available") {
+//                                console.log("Je suis entré ici aussi");
+//                                console.log(state_result1);
+//                                console.log(resultat['output']);
+//                                document.getElementById(reponse).innerHTML = JSON.stringify(resultat['output']);
+//                                clearInterval(state_result_waite);
+//                            }
+//                        }, 1000);
+//
+//                    }
+//
+//                }
+//
+//
+//            },
+//                    1000);
+//
+//        } else {
+//            console.log("Voyons cette session ici!");
+//            console.log(session_id);
+//            const state = setInterval(function () {
+//                state1 = get_idle(session_id);
+//                if (state1 === "idle") {
+//                    statement_id = submit_code(session_id, CodeMirrorString);
+//                    clearInterval(state);
+//                    if (state1 === "idle" && session_id !== -1 && statement_id !== -1) {
+//                        console.log("J'entre ici???");
+//                        const state_result_waite = setInterval(function () {
+//                            state_result1 = get_result(session_id, statement_id);
+//                            if (state_result1 === "available") {
+//                                console.log("Je suis entré ici aussi");
+//                                console.log(state_result1);
+//                                console.log(resultat['output']);
+//                                document.getElementById(reponse).innerHTML = JSON.stringify(resultat['output']);
+//                                clearInterval(state_result_waite);
+//                            }
+//                        }, 1000);
+//
+//                    }
+//
+//                }
+//
+//
+//            },
+//                    1000);
+//        }
 
 
-            });
-            console.log("Voyons cette session ici!");
-            console.log(session_id);
-            const state = setInterval(function () {
-                state1 = get_idle(session_id);
-                if (state1 === "idle") {
-                    statement_id = submit_code(session_id, CodeMirrorString);
-                    clearInterval(state);
-                    if (state1 === "idle" && session_id !== -1 && statement_id !== -1) {
-                        console.log("J'entre ici???");
-                        const state_result_waite = setInterval(function () {
-                            state_result1 = get_result(session_id, statement_id);
-                            if (state_result1 === "available") {
-                                console.log("Je suis entré ici aussi");
-                                console.log(state_result1);
-                                console.log(resultat['output']);
-                                document.getElementById(reponse).innerHTML = JSON.stringify(resultat['output']);
-                                clearInterval(state_result_waite);
-                            }
-                        }, 1000);
-
-                    }
-
-                }
-
-
-            },
-                    1000);
-
-        } else {
-            console.log("Voyons cette session ici!");
-            console.log(session_id);
-            const state = setInterval(function () {
-                state1 = get_idle(session_id);
-                if (state1 === "idle") {
-                    statement_id = submit_code(session_id, CodeMirrorString);
-                    clearInterval(state);
-                    if (state1 === "idle" && session_id !== -1 && statement_id !== -1) {
-                        console.log("J'entre ici???");
-                        const state_result_waite = setInterval(function () {
-                            state_result1 = get_result(session_id, statement_id);
-                            if (state_result1 === "available") {
-                                console.log("Je suis entré ici aussi");
-                                console.log(state_result1);
-                                console.log(resultat['output']);
-                                document.getElementById(reponse).innerHTML = JSON.stringify(resultat['output']);
-                                clearInterval(state_result_waite);
-                            }
-                        }, 1000);
-
-                    }
-
-                }
-
-
-            },
-                    1000);
-        }
 
     }
+
+//    var mycode = $("#codearea").val();
+//    $.ajax({
+//        url: "http://localhost:8998/sessions", //To create Livy session
+//        /*beforeSend: function(xhr) { 
+//         xhr.setRequestHeader("Authorization", "Basic " + btoa("username:password")); 
+//         },*/
+//        type: 'POST',
+//        dataType: 'json',
+//        contentType: 'application/json',
+//        processData: false,
+//        data: '{"kind": "spark"}',
+//        success: function (data) {
+//            var result = JSON.parse(data);
+//            var sessionid = result['id'];
+//            $.ajax({
+//                url: "http://localhost:8998/sessions/" + sessionid + "/statements", // To run statement
+//                /*beforeSend: function(xhr) { 
+//                 xhr.setRequestHeader("Authorization", "Basic " + btoa("username:password")); 
+//                 },*/
+//                type: 'POST',
+//                dataType: 'json',
+//                contentType: 'application/json',
+//                processData: false,
+//                data: '{"file": "' + mycode + '", "kind": "spark"}',
+//                success: function (data) {
+//                    alert(JSON.stringify(data));
+//                },
+//                error: function () {
+//                    alert("Cannot get data");
+//                }
+//            });
+//        },
+//        error: function () {
+//            alert("Cannot get data");
+//        }
+//    });
     divNumber++;
 
 

@@ -181,6 +181,7 @@ iframe
     font-weight: bold;
     
 }
+
 #trees::after{
     content: "";
     clear: both;
@@ -259,6 +260,11 @@ li
 
 p[id^=MyInterpreterResponse]{
     color: green;
+}
+
+span[id^=errorCode]{
+    display: none;
+    color: red;
 }
 
 
