@@ -19,53 +19,6 @@
             <version>2.3.1</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.livy</groupId>
-            <artifactId>livy-client-http</artifactId>
-            <version>0.5.0-incubating</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.thetransactioncompany</groupId>
-            <artifactId>cors-filter</artifactId>
-            <version>2.3</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.zeppelin/zeppelin-interpreter -->
-        <dependency>
-            <groupId>org.apache.zeppelin</groupId>
-            <artifactId>zeppelin-interpreter</artifactId>
-            <version>0.5.0-incubating</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>4.3.0.RELEASE</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security.kerberos</groupId>
-            <artifactId>spring-security-kerberos-client</artifactId>
-            <version>1.0.1.RELEASE</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.zeppelin</groupId>
-            <artifactId>zeppelin-livy</artifactId>
-            <version>0.8.0</version>
-            <type>jar</type>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.toile-libre.libe/curl -->
-        <dependency>
-            <groupId>org.toile-libre.libe</groupId>
-            <artifactId>curl</artifactId>
-            <version>0.0.19</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>
@@ -78,10 +31,12 @@
             <artifactId>okhttp</artifactId>
             <version>3.11.0</version>
         </dependency>
-
-
-
-
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src</sourceDirectory>

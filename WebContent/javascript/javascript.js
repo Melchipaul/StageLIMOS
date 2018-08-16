@@ -390,27 +390,32 @@ function appendDiv(identifiant, reponse, errorCode) {
     codeMirrorInstances["MyInterpreter" + divNumber] = javaEditor;
     var editor = codeMirrorInstances[identifiant];
     function isEmpty(myString) {
-            return (myString.length === 0 || !myString.trim());
-        }
+        return (myString.length === 0 || !myString.trim());
+    }
     if (editor !== undefined) {
 
         var CodeMirrorString = editor.getValue();
         console.log(CodeMirrorString);
         if (isEmpty(CodeMirrorString)) {
             var error = "Error : Your code expression is empty !";
-            $('#'+errorCode).html(error);
-            $('#'+errorCode).css("display", "inline-block");
+            $('#' + errorCode).html(error);
+            $('#' + errorCode).css("display", "inline-block");
         } else {
-            $('#'+errorCode).html("");
-            $('#'+errorCode).css("display", "none");
+            $('#' + errorCode).html("");
+            $('#' + errorCode).css("display", "none");
             error = "";
             $.ajax({
                 type: 'POST',
                 url: 'ApacheLivyInteractiveApi',
-                data: {myCode: CodeMirrorString},
+                async: false,
+                data: {myCode: CodeMirrorString,
+                    session_id: session_id},
                 success: function (resultat) {
-                    
-                 document.getElementById(reponse).innerHTML=  resultat;
+                    var resultatOutput = JSON.parse(resultat);
+                    document.getElementById(reponse).innerHTML = JSON.stringify(resultatOutput['output']);
+                    console.log(JSON.stringify(resultatOutput['output']));
+                    session_id = JSON.stringify(resultatOutput['session_id']);
+                    console.log(session_id);
 
                 }
 

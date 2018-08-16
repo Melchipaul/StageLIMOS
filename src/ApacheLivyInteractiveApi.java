@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 
 /**
@@ -69,7 +68,12 @@ public class ApacheLivyInteractiveApi extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         ApacheLivyBase apacheLivy = new ApacheLivyBase();
-        session_id = apacheLivy.createSession("spark");
+        if(Integer.parseInt(request.getParameter("session_id"))==-1){
+            session_id = apacheLivy.createSession("spark");
+        }else{
+            session_id = Integer.parseInt(request.getParameter("session_id"));
+        }
+        
         System.out.println(session_id);
         
         while (!stateSession.equals("idle")) {
@@ -90,6 +94,7 @@ public class ApacheLivyInteractiveApi extends HttpServlet {
         myResponse.put("session_id", session_id);
         myResponse.put("output", myResult.getJSONObject("output"));
         out.print(myResponse);
+       stateExecution = "waiting";
         //request.setAttribute("machaine", machaine);
 
         //this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
